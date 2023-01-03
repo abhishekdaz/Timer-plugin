@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Extension Experiment",
+  "description": "Learning to build ",
+  "version": "0.1",
+  "content_scripts": [
+      {
+        "matches": ["https://*/*",
+        "http://*/*"],
+        "js": ["content.js"],
+        "css":["style.css"]
+      }
+    ],
+    "host_permissions":["<all_urls>"],
+    "permissions":["scripting",
+    "webRequest"]
+  
+} 
+
