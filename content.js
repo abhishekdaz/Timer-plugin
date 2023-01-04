@@ -90,11 +90,15 @@ if(typeof init === 'undefined'){
         
         var startTime;
         startTime = new Date();
-
+       
         function display(){
+
             var endtime = new Date();
 
             var timeDiff = endtime - startTime;
+    
+            var saveTime = timeDiff;
+            
 
             timeDiff /= 1000;
 
@@ -110,12 +114,45 @@ if(typeof init === 'undefined'){
 
             timeDiff = Math.floor(timeDiff/24);
 
-            var days = timeDiff;
+            // var days = timeDiff;
             injectElement.innerHTML = hours+"<b>h</b> "+ minutes + "<b>m</b> " + seconds +"s";
             
-            setTimeout(display,1000);
+           
+                    
+
+                document.addEventListener("visibilitychange", () => {
+                if (document.visibilityState === 'visible') {
+                 setInterval(display,1000);  
+                 console.log("if loop", startTime, saveTime, timeDiff)
+                } else {
+                 startTime = saveTime;
+                 clearInterval(display);
+                 console.log("else loop", startTime, saveTime, timeDiff)
+                }
+                });
+
+
+
+            
+            
+                // if (!document.hidden) {
+                //     setInterval(display,1000);  
+                // } 
+                // else{
+                //     startTime = timeDiff;
+                //     clearInterval(display);
+                //     console.log('startTime',startTime);
+                   
+                // }
+
+             
         }
 
+        setInterval(display,1000);
+
+           
+          
+        
         // let body = document.querySelector("body");
         // body.style.marginTop = "40px";
 
@@ -130,10 +167,12 @@ if(typeof init === 'undefined'){
         // link.type = 'text/css';
         // link.href = 'style.css';
         // document.appendChild(link);
-        setTimeout(display,1000);
+        
     }
        
     init();
+
+
     
 }
 
